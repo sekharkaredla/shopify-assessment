@@ -8,7 +8,7 @@
         <version>2.5.5</version>
         <relativePath/>
     </parent>
-    <groupId>com.shopify.assesement</groupId>
+    <groupId>com.shopify</groupId>
     <artifactId>apis</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>apis</name>
@@ -60,5 +60,27 @@
             <version>5.3.12</version>
         </dependency>
 
+        <!--        for swagger-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
