@@ -3,6 +3,8 @@ package com.shopify.assessment.service;
 import com.shopify.assessment.common.DaoToObject;
 import com.shopify.assessment.dao.ItemDAO;
 import com.shopify.assessment.models.Item;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +27,9 @@ public class ItemService {
       throw new IllegalArgumentException("item not found with id " + itemId);
     }
     return itemMap.get(itemId);
+  }
+
+  public List<Item> getAllItems() {
+    return new ArrayList<>(itemMap.values());
   }
 }
