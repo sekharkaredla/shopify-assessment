@@ -23,6 +23,16 @@ public class Item {
     this.tags = tags;
   }
 
+  public Item(String id, String itemName, String itemType, String manufacturingCompany,
+              Date manufacturingDate, List<String> tags) {
+    this.id = id;
+    this.itemName = itemName;
+    this.itemType = itemType;
+    this.manufacturingCompany = manufacturingCompany;
+    this.manufacturingDate = manufacturingDate;
+    this.tags = tags;
+  }
+
   public String getId() {
     return id;
   }

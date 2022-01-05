@@ -17,7 +17,7 @@ public class ItemService {
   }
 
   public Item addItem(ItemDAO itemDAO) {
-    Item newItem = DaoToObject.ItemDAOtoItem(itemDAO);
+    Item newItem = DaoToObject.itemDAOtoItem(itemDAO);
     itemMap.put(newItem.getId(), newItem);
     return newItem;
   }
@@ -31,5 +31,21 @@ public class ItemService {
 
   public List<Item> getAllItems() {
     return new ArrayList<>(itemMap.values());
+  }
+
+  public void deleteItem(String itemId) {
+    if (!itemMap.containsKey(itemId)) {
+      throw new IllegalArgumentException("item not found with id " + itemId);
+    }
+    itemMap.remove(itemId);
+  }
+
+  public Item updateItem(ItemDAO itemDAO, String itemId) {
+    if (!itemMap.containsKey(itemId)) {
+      throw new IllegalArgumentException("item not found with id " + itemId);
+    }
+    Item newItem = DaoToObject.itemDAOtoItem(itemDAO, itemId);
+    itemMap.put(itemId, newItem);
+    return newItem;
   }
 }

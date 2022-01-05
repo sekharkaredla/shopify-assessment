@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,6 +56,30 @@ public class ItemController {
     } catch (Exception e) {
       return new ResponseEntity(
           Common.standardErrorResponse("error while getting all items " + e.getMessage()),
+          HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @RequestMapping(value = "/{itemId}", method = RequestMethod.DELETE)
+  public ResponseEntity deleteItem(@PathVariable("itemId") String itemId) {
+    try {
+      itemService.deleteItem(itemId);
+      return ResponseEntity.ok().body(Common.standardMessageResponse("delete successful"));
+    } catch (IllegalArgumentException e) {
+      return new ResponseEntity(Common.standardErrorResponse("item not found " + e.getMessage()),
+          HttpStatus.NOT_FOUND);
+    }
+  }
+
+  @RequestMapping(value = "/{itemId}", method = RequestMethod.PUT)
+  public ResponseEntity updateItem(@PathVariable("itemId") String itemId,
+                                   @RequestBody ItemDAO itemDAO) {
+    try {
+      Item updatedItem = itemService.updateItem(itemDAO, itemId);
+      return ResponseEntity.ok().body(Common.standardItemResponse(updatedItem));
+    } catch (IllegalArgumentException e) {
+      return new ResponseEntity(
+          Common.standardErrorResponse("error while updating : " + e.getMessage()),
           HttpStatus.BAD_REQUEST);
     }
   }
