@@ -25,7 +25,7 @@ public class ApisApplication {
   }
 
   /**
-   * Corresponding bean created for swagger v2.
+   * Corresponding bean created for swagger v2. Since swagger is the UI for a backend engineer.
    *
    * @return - Interface of a swagger.
    */

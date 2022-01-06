@@ -27,6 +27,12 @@ public class ItemController {
   @Autowired
   private ItemService itemService;
 
+  /**
+   * This method is an API for creating an item.
+   *
+   * @param itemBody - the item body.
+   * @return - the response to user.
+   */
   @PostMapping
   public ResponseEntity addItemDetails(@RequestBody ItemDAO itemBody) {
     try {
@@ -38,6 +44,12 @@ public class ItemController {
     }
   }
 
+  /**
+   * This method is to get details of an item.
+   *
+   * @param itemId - id of item.
+   * @return - the response to the user.
+   */
   @RequestMapping(value = "/{itemId}", method = RequestMethod.GET)
   public ResponseEntity getDetails(@PathVariable("itemId") String itemId) {
     try {
@@ -50,6 +62,16 @@ public class ItemController {
   }
 
 
+  /**
+   * This is the filter API. (The extra feature requested).
+   *
+   * @param name - name to filter.
+   * @param type - type to filter.
+   * @param company - manufacturing company to filter.
+   * @param date - date of manufacturing to filter. (Only day is considered).
+   * @param tags - tags for filtering items.
+   * @return - list of filtered items to user.
+   */
   @GetMapping
   public ResponseEntity filter(@RequestParam(value = "name", required = false) String name,
                                       @RequestParam(value = "type", required = false) String type,
@@ -71,6 +93,12 @@ public class ItemController {
     }
   }
 
+  /**
+   * This API is for deleting an item.
+   *
+   * @param itemId - id of item to be deleted.
+   * @return - message saying deleted successfully or not.
+   */
   @RequestMapping(value = "/{itemId}", method = RequestMethod.DELETE)
   public ResponseEntity deleteItem(@PathVariable("itemId") String itemId) {
     try {
@@ -82,6 +110,13 @@ public class ItemController {
     }
   }
 
+  /**
+   * This API is for updating an item.
+   *
+   * @param itemId - id of item we want to update.
+   * @param itemDAO - the item body we want to update.
+   * @return - the updated item.
+   */
   @RequestMapping(value = "/{itemId}", method = RequestMethod.PUT)
   public ResponseEntity updateItem(@PathVariable("itemId") String itemId,
                                    @RequestBody ItemDAO itemDAO) {
