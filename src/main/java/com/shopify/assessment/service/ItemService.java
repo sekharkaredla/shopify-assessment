@@ -35,7 +35,7 @@ public class ItemService {
     return itemMap.get(itemId);
   }
 
-  public List<Item> getAllItems(Optional<String> name, Optional<String> type,
+  public List<Item> filterItems(Optional<String> name, Optional<String> type,
                                 Optional<String> company,
                                 Optional<Date> date, List<String> tags) {
     List<Item> allItems = new ArrayList<>(itemMap.values());

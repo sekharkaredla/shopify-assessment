@@ -50,7 +50,7 @@ public class ItemController {
   }
 
   @GetMapping
-  public ResponseEntity getAllDetails(@RequestParam(value = "name", required = false) String name,
+  public ResponseEntity filter(@RequestParam(value = "name", required = false) String name,
                                       @RequestParam(value = "type", required = false) String type,
                                       @RequestParam(value = "company", required = false)
                                           String company,
@@ -59,7 +59,7 @@ public class ItemController {
                                           List<String> tags) {
     try {
       List<Item> items =
-          itemService.getAllItems(Optional.ofNullable(name), Optional.ofNullable(type), Optional.ofNullable(company),
+          itemService.filterItems(Optional.ofNullable(name), Optional.ofNullable(type), Optional.ofNullable(company),
               Optional.ofNullable(date), tags);
       return ResponseEntity.ok().body(
           items.stream().map(Common::standardItemResponse).collect(Collectors.toList()));
