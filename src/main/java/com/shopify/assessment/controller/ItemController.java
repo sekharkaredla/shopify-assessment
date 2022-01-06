@@ -4,7 +4,9 @@ import com.shopify.assessment.common.Common;
 import com.shopify.assessment.dao.ItemDAO;
 import com.shopify.assessment.models.Item;
 import com.shopify.assessment.service.ItemService;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,10 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -48,9 +50,17 @@ public class ItemController {
   }
 
   @GetMapping
-  public ResponseEntity getAllDetails() {
+  public ResponseEntity getAllDetails(@RequestParam(value = "name", required = false) String name,
+                                      @RequestParam(value = "type", required = false) String type,
+                                      @RequestParam(value = "company", required = false)
+                                          String company,
+                                      @RequestParam(value = "date", required = false) Date date,
+                                      @RequestParam(value = "tags", required = false)
+                                          List<String> tags) {
     try {
-      List<Item> items = itemService.getAllItems();
+      List<Item> items =
+          itemService.getAllItems(Optional.ofNullable(name), Optional.ofNullable(type), Optional.ofNullable(company),
+              Optional.ofNullable(date), tags);
       return ResponseEntity.ok().body(
           items.stream().map(Common::standardItemResponse).collect(Collectors.toList()));
     } catch (Exception e) {
