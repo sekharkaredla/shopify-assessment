@@ -12,6 +12,22 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
+/**
+ * This is the service class where item related logic is performed.
+ *
+ * <p>
+ *   Following actions are performed here:
+ *   - creating a new item
+ *   - storing the item in a map
+ *   - handling get call with itemId
+ *   - handling the filter call
+ *   - handling update (put NOT patch)
+ *   - handling delete
+ * </p>
+ *
+ * As of now we are using a ConcurrentHashMap as a data store. (In memory)
+ * Later we can migrate this service to use a Spring JPA Repository.
+ */
 @Service
 public class ItemService {
   private ConcurrentHashMap<String, Item> itemMap;

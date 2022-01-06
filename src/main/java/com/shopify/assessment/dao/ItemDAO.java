@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * ItemDAO class used for accepting input from user.
+ */
 public class ItemDAO {
 
   @JsonProperty("item_name")

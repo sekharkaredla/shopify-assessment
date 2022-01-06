@@ -5,6 +5,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Item class is our internal model class.
+ *
+ * We can simply edit this class in future when we want to integrate with database.
+ * Since we are using an extra DAO layer, we are protecting the changes in API layer.
+ */
 public class Item {
   private String id;
   private String itemName;
