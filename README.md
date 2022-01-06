@@ -1,5 +1,5 @@
 # Description
-A simple and sophisticated demonstration of backend services development capabilities.
+A simple and sophisticated demonstration of backend services development using Spring Boot.
 # Author
 Anantha Sashi Sekhar Karedla
 
