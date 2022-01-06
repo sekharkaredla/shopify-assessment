@@ -59,4 +59,15 @@ public class ItemDAO {
   public void setTags(List<String> tags) {
     this.tags = tags;
   }
+
+  @Override
+  public String toString() {
+    return "ItemDAO{" +
+        "itemName='" + itemName + '\'' +
+        ", itemType='" + itemType + '\'' +
+        ", manufacturingCompany='" + manufacturingCompany + '\'' +
+        ", manufacturingDate=" + manufacturingDate +
+        ", tags=" + tags +
+        '}';
+  }
 }
