@@ -368,5 +368,5 @@ looks like this:-
 
 looks like this:-
 
-<img alt="invalid_inputs" height="800" src="./res/images/invalid_inp_1.png?raw=true" title="invalid_inp_1"/>
+<img alt="invalid_inputs" height="600" src="./res/images/invalid_inp_1.png?raw=true" title="invalid_inp_1"/>
 
