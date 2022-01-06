@@ -118,9 +118,9 @@ Deleting the item which was updated above.
 
 looks like this:-
 
-<img alt="delete" height="800" src="./res/images/delete_1.png?raw=true" title="delete_1"/>
+<img alt="delete" height="500" src="./res/images/delete_1.png?raw=true" title="delete_1"/>
 
-# Some fun with filters
+# Fun with filters
 
 1) filter based on manufacturing company
 
@@ -319,4 +319,54 @@ response
 ]
 ```
 
+
+6) The manufacturing date filter
+
+```text
+request URL : http://localhost:8080/item?date=2021-01-05
+```
+response (there is a timezone, requesting timezone is different from UTC)
+```json
+[
+  {
+    "item": {
+      "id": "9f860b12-ed97-4ea0-a422-e0328600c4c1",
+      "itemName": "k",
+      "itemType": "b",
+      "manufacturingCompany": "c",
+      "manufacturingDate": "2021-01-06T02:41:12.353+00:00",
+      "tags": [
+        "x"
+      ]
+    }
+  },
+  {
+    "item": {
+      "id": "4ccfbaa4-9f5b-4c06-ab25-6a335ece8920",
+      "itemName": "a",
+      "itemType": "b",
+      "manufacturingCompany": "c",
+      "manufacturingDate": "2021-01-06T02:41:12.353+00:00",
+      "tags": [
+        "x"
+      ]
+    }
+  }
+]
+```
+
+# Error handling
+
+1) Handling invalid item ids.
+
+looks like this:-
+
+<img alt="invalid_id" height="500" src="./res/images/invalid_id_1.png?raw=true" title="invalid_id_1"/>
+
+
+2) Invalid inputs during create
+
+looks like this:-
+
+<img alt="invalid_inputs" height="800" src="./res/images/invalid_inp_1.png?raw=true" title="invalid_inp_1"/>
 
