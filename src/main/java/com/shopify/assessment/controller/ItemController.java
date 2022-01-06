@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,24 +66,26 @@ public class ItemController {
   /**
    * This is the filter API. (The extra feature requested).
    *
-   * @param name - name to filter.
-   * @param type - type to filter.
+   * @param name    - name to filter.
+   * @param type    - type to filter.
    * @param company - manufacturing company to filter.
-   * @param date - date of manufacturing to filter. (Only day is considered).
-   * @param tags - tags for filtering items.
+   * @param date    - date of manufacturing to filter. (Only day is considered).
+   * @param tags    - tags for filtering items.
    * @return - list of filtered items to user.
    */
   @GetMapping
   public ResponseEntity filter(@RequestParam(value = "name", required = false) String name,
-                                      @RequestParam(value = "type", required = false) String type,
-                                      @RequestParam(value = "company", required = false)
-                                          String company,
-                                      @RequestParam(value = "date", required = false) Date date,
-                                      @RequestParam(value = "tags", required = false)
-                                          List<String> tags) {
+                               @RequestParam(value = "type", required = false) String type,
+                               @RequestParam(value = "company", required = false)
+                                   String company,
+                               @RequestParam(value = "date", required = false)
+                               @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
+                               @RequestParam(value = "tags", required = false)
+                                   List<String> tags) {
     try {
       List<Item> items =
-          itemService.filterItems(Optional.ofNullable(name), Optional.ofNullable(type), Optional.ofNullable(company),
+          itemService.filterItems(Optional.ofNullable(name), Optional.ofNullable(type),
+              Optional.ofNullable(company),
               Optional.ofNullable(date), tags);
       return ResponseEntity.ok().body(
           items.stream().map(Common::standardItemResponse).collect(Collectors.toList()));
@@ -113,7 +116,7 @@ public class ItemController {
   /**
    * This API is for updating an item.
    *
-   * @param itemId - id of item we want to update.
+   * @param itemId  - id of item we want to update.
    * @param itemDAO - the item body we want to update.
    * @return - the updated item.
    */
