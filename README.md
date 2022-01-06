@@ -3,6 +3,10 @@ A simple and sophisticated demonstration of backend services development using S
 # Author
 Anantha Sashi Sekhar Karedla
 
+# Features implemented
+- Basic CRUD Functionality.
+- Filtering based on fields/inventory count/tags/other metadata.
+
 # How to run the services
 
 1) Goto the `res/jar` folder.
